@@ -3,6 +3,7 @@ import java.net.*;
 import java.io.*; 
   
    public class TCPClient { 
+    int soldi = 1500;
      public void start()throws IOException { 
        //Connessione della Socket con il Server 
        Socket socket = new Socket("localhost", 7777); 
@@ -16,12 +17,24 @@ import java.io.*;
        //Ciclo infinito per inserimento testo del Client 
        while (true) 
 	{ 
-         System.out.print("Inserisci: "); 
+         System.out.print("hai "+soldi+" /nCosa vuoi fare: "); 
          String userInput = stdIn.readLine(); 
          if (userInput.equals("QUIT")) 
 		break; 
 	os.writeBytes(userInput + '\n');  
-	 System.out.println("Hai digitato: " + is.readLine()); 
+      switch(userInput){
+        case "via":
+          soldi = soldi + 200;
+          break;
+        case "compra":
+        System.out.print("cosa:");
+        String cosa = stdIn.readLine();
+        
+          break;
+        case "elenco":
+          
+        break;
+      }
        } 
   
        //Chiusura dello Stream e del Socket 
