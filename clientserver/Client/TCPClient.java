@@ -4,6 +4,8 @@ import java.io.*;
   
    public class TCPClient { 
     int soldi = 1500;
+    boolean first = true;
+    String nome;
      public void start()throws IOException { 
        //Connessione della Socket con il Server 
        Socket socket = new Socket("localhost", 7777); 
@@ -17,11 +19,18 @@ import java.io.*;
        //Ciclo infinito per inserimento testo del Client 
        while (true) 
 	{ 
-         System.out.print("hai "+soldi+" /nCosa vuoi fare: "); 
+    if(first){
+      System.out.print("inserisci il tuo nome: ");
+      nome = stdIn.readLine();
+      os.writeBytes(nome + "\n");
+      System.out.println("Benvenuto "+nome);
+      first = false;
+    }
+         System.out.print(nome+" hai "+soldi+" \n Cosa vuoi fare: "); 
          String userInput = stdIn.readLine(); 
          if (userInput.equals("QUIT")) 
 		break; 
-	os.writeBytes(userInput + '\n');  
+os.writeBytes(userInput + "\n");  
       switch(userInput){
         case "via":
           soldi = soldi + 200;
@@ -34,6 +43,9 @@ import java.io.*;
         case "elenco":
           
         break;
+        default :
+          System.out.println("comando non valido");
+          break; 
       }
        } 
   

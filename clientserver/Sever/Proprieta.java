@@ -5,8 +5,8 @@ public class Proprieta {
     int numero_case;
     int costo_casa;
     //ipotecato
-    int proprietario;
-    Proprieta(String nome, int costo, String colore, int numero_case,int costo_casa, int proprietario){
+    String proprietario;
+    Proprieta(String nome, int costo, String colore, int numero_case,int costo_casa, String proprietario){
         this.nome = nome;
         this.costo = costo;
         this.colore = colore;
