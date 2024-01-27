@@ -5,19 +5,30 @@ import java.io.*;
    //Creazione di una classe per il Multrithreading
    class ServerThread extends Thread {
      private Socket socket;
+      private Socket[] array;
      public String userInput;
      public ServerThread (Socket socket,Socket[] array) {
+  
        this.socket = socket;
        System.out.println("  Stato    Tipo Richiesta  Porta Server  Porta Client  Indirizzo Cliernt\n");
      }
 
      //esecuzione del Thread sul Socket
      public void run() {
-       try {
+      try {
+        DataInputStream is = new DataInputStream(socket.getInputStream());
+        DataOutputStream os = new DataOutputStream(socket.getOutputStream());
+        DataInputStream[] isa = new DataInputStream[6];
+        DataOutputStream[] osa = new DataOutputStream[6];
+        for (int i = 0; i < 6; i++) {
+          isa[i] = new DataInputStream(array[i].getInputStream());
+          osa[i] = new DataOutputStream(array[i].getOutputStream());
+        }
         BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         userInput = reader.readLine();
-
-       }
+        os.close();
+        is.close();
+      }
        catch (IOException e) {
          System.out.println("IOException: " + e);
        }
