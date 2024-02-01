@@ -7,19 +7,52 @@ public class SingleServerMng extends Thread{
         start();
     }
     public void run() {
+        
+        boolean first = true;
+        giocatore g = new giocatore();
         try {
+            DataOutputStream os = new DataOutputStream(socket.getOutputStream());
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+            
+            out.println("inserisci il tuo nome: ");
             while(true){
+                //os.writeBytes("server dice: "+"\n");
               String str = in.readLine();
               if(str.equals("QUIT")){
                 System.out.println("Client disconnesso");
                 break;
               }
-              out.println("Hai detto: " + str);
+              //.println("Hai detto: " + str);
               System.out.println("Echoing: " + str);
+              if(first){
+                g.setNome(str);
+                out.println("benvenuto: "+str);
+                first = false;}
+                else{
+                 switch(str){
+                    case "via":
+                        g.via();
+                        out.println("hai "+g.soldi+" \n Cosa vuoi fare: ");
+                      break;
+                    case "compra":
+                    
+                    
+                      break;
+                    case "elenco":
+                    
+                      
+                    break;
+                    case "conto":
+                        out.println("hai "+g.soldi);
+                        break;
+                    default :
+                      System.out.println("comando non valido");
+                      break; 
+                  }   }
+
             }
-            out.close();
+            //out.close();
             in.close();
             socket.close();
         } catch (IOException e) {

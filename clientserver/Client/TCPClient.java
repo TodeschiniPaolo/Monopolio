@@ -13,25 +13,31 @@ import java.io.*;
        //Stream di byte da passare al Socket 
        DataOutputStream os = new DataOutputStream(socket.getOutputStream()); 
        DataInputStream is = new DataInputStream(socket.getInputStream()); 
-       BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in)); 
+       BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
+       BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
        System.out.print("Per disconnettersi dal Server scrivere: QUIT\n"); 
-  
+       
        //Ciclo infinito per inserimento testo del Client 
        while (true) 
 	{ 
     if(first){
-      System.out.print("inserisci il tuo nome: ");
+      String receivedMessage = in.readLine();
+      System.out.print(receivedMessage);
+      System.out.print("");
       nome = stdIn.readLine();
       os.writeBytes(nome + "\n");
-      System.out.println("Benvenuto "+nome);
+     // System.out.print("");
+      //System.out.println("Benvenuto "+nome);
       first = false;
     }
-         System.out.print(nome+" hai "+soldi+" \n Cosa vuoi fare: "); 
+    String receivedMessage = in.readLine();
+        System.out.println(receivedMessage);
+        // System.out.print(nome+" hai "+soldi+" \n Cosa vuoi fare: "); 
          String userInput = stdIn.readLine(); 
          if (userInput.equals("QUIT")) 
 		break; 
 os.writeBytes(userInput + "\n");  
-      switch(userInput){
+     /*  switch(userInput){
         case "via":
           soldi = soldi + 200;
           break;
@@ -47,7 +53,7 @@ os.writeBytes(userInput + "\n");
         default :
           System.out.println("comando non valido");
           break; 
-      }
+      }*/
        } 
   
        //Chiusura dello Stream e del Socket 
