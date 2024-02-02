@@ -36,8 +36,18 @@ public class SingleServerMng extends Thread{
                         out.println("hai "+g.soldi+" \n Cosa vuoi fare: ");
                       break;
                     case "compra":
-                    
-                    
+                        out.println("cosa:");
+                        String cosa = in.readLine();
+                        switch (cosa) {
+                          case "proprieta":
+                            
+                            break;
+                          case "casa":
+                            
+                            break;
+                          default:
+                            break;
+                        }
                       break;
                     case "elenco":
                     
@@ -47,7 +57,7 @@ public class SingleServerMng extends Thread{
                         out.println("hai "+g.soldi);
                         break;
                     default :
-                      System.out.println("comando non valido");
+                      out.println("comando non valido");
                       break; 
                   }   }
 

@@ -23,7 +23,6 @@ import java.io.*;
     if(first){
       String receivedMessage = in.readLine();
       System.out.print(receivedMessage);
-      System.out.print("");
       nome = stdIn.readLine();
       os.writeBytes(nome + "\n");
      // System.out.print("");
@@ -31,29 +30,27 @@ import java.io.*;
       first = false;
     }
     String receivedMessage = in.readLine();
-        System.out.println(receivedMessage);
+        
         // System.out.print(nome+" hai "+soldi+" \n Cosa vuoi fare: "); 
          String userInput = stdIn.readLine(); 
          if (userInput.equals("QUIT")) 
 		break; 
 os.writeBytes(userInput + "\n");  
-     /*  switch(userInput){
+      switch(userInput){
         case "via":
-          soldi = soldi + 200;
+        System.out.println(receivedMessage);
           break;
         case "compra":
-        System.out.print("cosa:");
-        String cosa = stdIn.readLine();
-        
+          System.out.println(receivedMessage);
           break;
         case "elenco":
         
           
         break;
         default :
-          System.out.println("comando non valido");
           break; 
-      }*/
+      }
+      System.out.println(receivedMessage);
        } 
   
        //Chiusura dello Stream e del Socket 
