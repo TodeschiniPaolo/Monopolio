@@ -6,6 +6,8 @@ import java.io.*;
     int soldi = 1500;
     boolean first = true;
     String nome;
+String receivedMessage;
+
      public void start()throws IOException { 
        //Connessione della Socket con il Server 
        Socket socket = new Socket("localhost", 7777); 
@@ -21,19 +23,21 @@ import java.io.*;
        while (true) 
 	{ 
     if(first){
-      String receivedMessage = in.readLine();
+      receivedMessage = in.readLine();
       System.out.print(receivedMessage);
       nome = stdIn.readLine();
       os.writeBytes(nome + "\n");
-
+     // System.out.print("");
+      //System.out.println("Benvenuto "+nome);
       first = false;
     }
-    String receivedMessage = in.readLine();
+        
+      receivedMessage = in.readLine();
+      System.out.print(receivedMessage);
          String userInput = stdIn.readLine(); 
+	os.writeBytes(userInput + "\n");  
          if (userInput.equals("QUIT")) 
 		break; 
-os.writeBytes(userInput + "\n");  
-      System.out.println(receivedMessage);
        } 
   
        //Chiusura dello Stream e del Socket 

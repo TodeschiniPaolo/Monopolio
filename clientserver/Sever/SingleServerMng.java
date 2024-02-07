@@ -27,13 +27,13 @@ public class SingleServerMng extends Thread{
               System.out.println("Echoing: " + str);
               if(first){
                 g.setNome(str);
-                out.println("benvenuto: "+str);
+                out.println("benvenuto: "+str + " cosa vuoi fare ");
                 first = false;}
                 else{
                  switch(str){
                     case "via":
                         g.via();
-                        out.println("hai "+g.soldi+" \n Cosa vuoi fare: ");
+                        out.println("hai "+g.soldi);
                       break;
                     case "compra":
                         out.println("cosa:");
