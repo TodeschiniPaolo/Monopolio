@@ -25,31 +25,14 @@ import java.io.*;
       System.out.print(receivedMessage);
       nome = stdIn.readLine();
       os.writeBytes(nome + "\n");
-     // System.out.print("");
-      //System.out.println("Benvenuto "+nome);
+
       first = false;
     }
     String receivedMessage = in.readLine();
-        
-        // System.out.print(nome+" hai "+soldi+" \n Cosa vuoi fare: "); 
          String userInput = stdIn.readLine(); 
          if (userInput.equals("QUIT")) 
 		break; 
 os.writeBytes(userInput + "\n");  
-      switch(userInput){
-        case "via":
-        System.out.println(receivedMessage);
-          break;
-        case "compra":
-          System.out.println(receivedMessage);
-          break;
-        case "elenco":
-        
-          
-        break;
-        default :
-          break; 
-      }
       System.out.println(receivedMessage);
        } 
   
