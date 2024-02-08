@@ -5,6 +5,7 @@ import java.io.*;
 
    //Classe Server per attivare la Socket
      public class TCPParallelServer {
+    
     HashMap<String, Proprieta> proprieta = new HashMap<String, Proprieta>();
     String[] players;
     public TCPParallelServer() {
@@ -51,7 +52,8 @@ import java.io.*;
          System.out.println("Ricezione una chiamata di apertura da:\n" + socket);
         //avvia il processo per ogni client 
         try{
-          new SingleServerMng(socket);
+          new SingleServerMng(socket,this);
+
         } catch (Exception e) {
           socket.close();
           throw e;
@@ -60,9 +62,8 @@ import java.io.*;
   //      serverThread.start();
        }
      }
-
      public static void main (String[] args) throws Exception {
-       TCPParallelServer tcpServer = new TCPParallelServer();
+      TCPParallelServer tcpServer = new TCPParallelServer();
        tcpServer.start();
      }
    }

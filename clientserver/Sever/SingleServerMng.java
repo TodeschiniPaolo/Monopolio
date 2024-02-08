@@ -1,67 +1,18 @@
 import java.io.*;
 import java.net.Socket;
+import java.util.HashMap;
+
 public class SingleServerMng extends Thread{
     private Socket socket;
-    public SingleServerMng(Socket socket) {
+	private TCPParallelServer tcpServer;
+    public SingleServerMng(Socket socket, TCPParallelServer tcpServer) {
         this.socket = socket;
+		this.tcpServer = tcpServer;
         start();
     }
-	private boolean esiste =false;
-	private boolean posseduta =false;
-	private boolean possiede =false;
-	private int n_case=0;
-
-private boolean esisteproprieta(String proprieta)
-{
-	if (esiste)
-		return true;
-	else{
-		esiste =true;
-		return false;
-		}
-}
-
-private boolean possedutaproprieta(String proprieta)
-{
-	if (posseduta)
-		return true;
-	else{
-		posseduta =true;
-		return false;
-		}
-}
-
-private boolean possiedeproprieta(String proprieta)
-{
-	if (possiede)
-		return true;
-	else{
-		possiede =true;
-		return false;
-		}
-}
-
-private void setproprieta(String proprieta, String nome)
-{
-}
-
-private boolean costruiscicasa(String proprieta)
-{
-	if (n_case < 5)
-	{
-		n_case=n_case+1;
-		return true;
+    public int quantecasa(String nomeProprieta){
+		return tcpServer.proprieta.get(nomeProprieta).getNumeroCase();
 	}
-	else
-	{
-		return false;
-	}
-}
-
-private int quantecasa(String proprieta)
-{
-return n_case;
-}
     public void run() {
         
         boolean first = true;
@@ -103,52 +54,69 @@ return n_case;
                             break;
                           case "casa":
                       out.println("nome proprieta su cui costruire ");
-                            
+                            azione =2;
                             break;
                           default:
                       out.println("comando compra non valido");
                             break;
                         }
-						if (azione ==0)
+						if (azione !=0)
 						{
-                        String proprieta = in.readLine();
-							if (esisteproprieta(proprieta))
+                        String nomeProprieta = in.readLine();
+							if (tcpServer.proprieta.get(nomeProprieta) != null)
 							{
 								if (azione == 1)
 								{
-									if (possedutaproprieta(proprieta))
+									if (tcpServer.proprieta.get(nomeProprieta).getProprietario() == null)
 									{
-										out.println("Comprato "+ proprieta +" cosa vuoi fare ");
-										setproprieta(proprieta,g.getNome());
+										if(g.soldi > tcpServer.proprieta.get(nomeProprieta).getCosto())
+										{
+											g.soldi = g.soldi - tcpServer.proprieta.get(nomeProprieta).getCosto();
+											out.println("Comprato "+ nomeProprieta +" cosa vuoi fare ");
+											tcpServer.proprieta.get(nomeProprieta).setProprietario(g.getNome());
+										}
+										else
+										{
+											out.println("Non hai abbastanza soldi per comprare "+ nomeProprieta +" cosa vuoi fare ");
+										}
 									}
 									else
 									{
-										out.println("Posseduta "+ proprieta +" cosa vuoi fare ");
+										out.println("Posseduta "+ nomeProprieta +" cosa vuoi fare ");
 									}
 								}
 								else
 								{	// al momento solo 2
 									//if (possiedeproprieta(proprieta,g.getNome()))
-                  if (possiedeproprieta(proprieta))
+                 					 if (tcpServer.proprieta.get(nomeProprieta).getProprietario() == g.getNome())
 									{
-										if (costruiscicasa(proprieta))
+										if (tcpServer.proprieta.get(nomeProprieta).getNumeroCase() < 5)
 										{
-											out.println("Costruito "+ quantecasa(proprieta) +" cosa vuoi fare ");
+											if (g.soldi > tcpServer.proprieta.get(nomeProprieta).getCostoCasa())
+											{
+												g.soldi = g.soldi - tcpServer.proprieta.get(nomeProprieta).getCostoCasa();
+												out.println("Costruito "+ quantecasa(nomeProprieta) +" cosa vuoi fare ");
+												tcpServer.proprieta.get(nomeProprieta).costruisciCasa();
+											}
+											else
+											{
+												out.println("Mancano soldi Costruzioni "+ nomeProprieta +" cosa vuoi fare ");
+											}
 										}
 										else
 										{
-											out.println("MAX Costruzioni "+ proprieta +" cosa vuoi fare ");
+											out.println("MAX Costruzioni "+ nomeProprieta +" cosa vuoi fare ");
 										}
 									}
 									else
 									{
-										out.println("Non posseduta "+ proprieta +" cosa vuoi fare ");
+										out.println("Non posseduta "+ nomeProprieta +" cosa vuoi fare ");
 									}
 								}
 							}
 							else
 							{
-								out.println("Non ESISTE "+ proprieta +" cosa vuoi fare ");
+								out.println("Non ESISTE "+ nomeProprieta +" cosa vuoi fare ");
 							}
 						}
                       break;
