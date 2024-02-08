@@ -90,7 +90,7 @@ public class SingleServerMng extends Thread{
 									//if (possiedeproprieta(proprieta,g.getNome()))
                  					 if (tcpServer.proprieta.get(nomeProprieta).getProprietario() == g.getNome())
 									{
-										if (tcpServer.proprieta.get(nomeProprieta).getNumeroCase() < 5)
+										if (tcpServer.proprieta.get(nomeProprieta).getNumeroCase() < 5 && tcpServer.proprieta.get(nomeProprieta).getColore() != "stazione" && tcpServer.proprieta.get(nomeProprieta).getColore() != "societa")
 										{
 											if (g.soldi > tcpServer.proprieta.get(nomeProprieta).getCostoCasa())
 											{

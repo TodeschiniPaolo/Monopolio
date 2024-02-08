@@ -35,5 +35,8 @@ public class Proprieta {
     public void costruisciCasa(){
         numero_case++;
     }
-    
+    public String getColore(){
+        return colore;
+    }
+
 }
