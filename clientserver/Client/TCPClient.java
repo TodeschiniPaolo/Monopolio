@@ -37,7 +37,25 @@ String receivedMessage;
          String userInput = stdIn.readLine(); 
 	os.writeBytes(userInput + "\n");  
          if (userInput.equals("QUIT")) 
-		break; 
+         {
+		break;
+         } 
+    if (userInput.equals("elenco")) {
+      boolean uscita =false;
+      while (uscita != true)
+      {
+         receivedMessage = in.readLine();
+       if (receivedMessage != "ENDELENCO")
+       {
+        System.out.print(receivedMessage+ "\n");
+       }
+       else
+       {
+        uscita = true;
+       }	
+      }
+    }
+
        } 
   
        //Chiusura dello Stream e del Socket 

@@ -1,6 +1,9 @@
 import java.io.*;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class SingleServerMng extends Thread{
     private Socket socket;
@@ -95,8 +98,8 @@ public class SingleServerMng extends Thread{
 											if (g.soldi > tcpServer.proprieta.get(nomeProprieta).getCostoCasa())
 											{
 												g.soldi = g.soldi - tcpServer.proprieta.get(nomeProprieta).getCostoCasa();
-												out.println("Costruito "+ quantecasa(nomeProprieta) +" cosa vuoi fare ");
 												tcpServer.proprieta.get(nomeProprieta).costruisciCasa();
+												out.println("Costruito "+ quantecasa(nomeProprieta) +" cosa vuoi fare ");
 											}
 											else
 											{
@@ -121,7 +124,26 @@ public class SingleServerMng extends Thread{
 						}
                       break;
                     case "elenco":
-                    
+						Iterator<Entry<String, Proprieta>> it = tcpServer.proprieta.entrySet().iterator();
+						
+						while (it.hasNext()) {
+							Map.Entry<String, Proprieta> entry = (Map.Entry<String, Proprieta>)it.next();
+					 
+							out.println("Key = " + entry.getKey());
+							out.println("Value = " + tcpServer.proprieta.get(entry.getKey()).getProprietario());
+							// tcpServer.proprieta.get(nomeProprieta).getProprietario()
+							// out.println("Value2 = " + entry.getProprietario());
+						}
+
+						it = tcpServer.proprieta.entrySet().iterator();
+ 
+						while (it.hasNext()) {
+							Map.Entry<String, Proprieta> entry = (Map.Entry<String, Proprieta>)it.next();
+					 
+							out.println("Key = " + entry.getKey());
+							//out.println("Value = " + entry.getProprietario());
+						}
+						out.println("ENDELENCO");
                       
                     break;
                     case "conto":
