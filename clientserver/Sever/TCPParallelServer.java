@@ -41,15 +41,23 @@ import java.io.*;
     }
      public void start() throws Exception {
        ServerSocket serverSocket = new ServerSocket(7777);
-       Socket[] array = new Socket[6];
+       Socket[] servers = new Socket[6];
       // ServerThread serverThread = new ServerThread(socket, array);
       
        //Ciclo infinito di ascolto dei Client
        while(true)
 	{
          System.out.println(" Attesa ");
-         Socket socket = serverSocket.accept();
-         System.out.println("Ricezione una chiamata di apertura da:\n" + socket);
+         //Socket socket = serverSocket.accept();
+          for(int i = 0; i < 6; i++){
+            if(servers[i] == null){
+              servers[i] = serverSocket.accept();
+              new SingleServerMng(servers[i],this);
+              break;
+            }
+          }
+
+/*          System.out.println("Ricezione una chiamata di apertura da:\n" + socket);
         //avvia il processo per ogni client 
         try{
           new SingleServerMng(socket,this);
@@ -58,7 +66,7 @@ import java.io.*;
           socket.close();
           throw e;
         }
-	      
+	*/      
   //      serverThread.start();
        }
      }

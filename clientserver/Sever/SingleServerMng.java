@@ -131,10 +131,19 @@ public class SingleServerMng extends Thread{
 					 
 							if (tcpServer.proprieta.get(entry.getKey()).getProprietario() == g.getNome())
 							{	
-								out.println("Proprieta posseduta " + entry.getKey()+ " costo "+ tcpServer.proprieta.get(entry.getKey()).getCosto() + " case "+ tcpServer.proprieta.get(entry.getKey()).getNumeroCase());
+								out.println("Proprieta posseduta da te " + entry.getKey()+ " costo "+ tcpServer.proprieta.get(entry.getKey()).getCosto() + " case "+ tcpServer.proprieta.get(entry.getKey()).getNumeroCase());
 							}
+						}
 
-
+						it = tcpServer.proprieta.entrySet().iterator();
+ 
+						while (it.hasNext()) {
+							Map.Entry<String, Proprieta> entry = (Map.Entry<String, Proprieta>)it.next();
+					 
+							if ((tcpServer.proprieta.get(entry.getKey()).getProprietario() != g.getNome()) && (tcpServer.proprieta.get(entry.getKey()).getProprietario() != null))
+							{	
+								out.println("Proprieta posseduta da altri " + entry.getKey()+ " costo "+ tcpServer.proprieta.get(entry.getKey()).getCosto());
+							}
 						}
 
 						it = tcpServer.proprieta.entrySet().iterator();
