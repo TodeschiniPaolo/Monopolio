@@ -129,10 +129,12 @@ public class SingleServerMng extends Thread{
 						while (it.hasNext()) {
 							Map.Entry<String, Proprieta> entry = (Map.Entry<String, Proprieta>)it.next();
 					 
-							out.println("Key = " + entry.getKey());
-							out.println("Value = " + tcpServer.proprieta.get(entry.getKey()).getProprietario());
-							// tcpServer.proprieta.get(nomeProprieta).getProprietario()
-							// out.println("Value2 = " + entry.getProprietario());
+							if (tcpServer.proprieta.get(entry.getKey()).getProprietario() == g.getNome())
+							{	
+								out.println("Proprieta posseduta " + entry.getKey());
+							}
+
+
 						}
 
 						it = tcpServer.proprieta.entrySet().iterator();
@@ -140,10 +142,13 @@ public class SingleServerMng extends Thread{
 						while (it.hasNext()) {
 							Map.Entry<String, Proprieta> entry = (Map.Entry<String, Proprieta>)it.next();
 					 
-							out.println("Key = " + entry.getKey());
-							//out.println("Value = " + entry.getProprietario());
+							if (tcpServer.proprieta.get(entry.getKey()).getProprietario() != g.getNome())
+							{	
+								out.println("Proprieta NON posseduta " + entry.getKey());
+							}
 						}
 						out.println("ENDELENCO");
+                        out.println("hai "+g.soldi +" cosa vuoi fare ");
                       
                     break;
                     case "conto":

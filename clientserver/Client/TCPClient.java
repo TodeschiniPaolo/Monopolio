@@ -45,13 +45,13 @@ String receivedMessage;
       while (uscita != true)
       {
          receivedMessage = in.readLine();
-       if (receivedMessage != "ENDELENCO")
+       if (receivedMessage.equals("ENDELENCO"))
        {
-        System.out.print(receivedMessage+ "\n");
+        uscita = true;
        }
        else
        {
-        uscita = true;
+        System.out.print(receivedMessage+ "\n");
        }	
       }
     }
