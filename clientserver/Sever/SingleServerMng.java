@@ -131,7 +131,7 @@ public class SingleServerMng extends Thread{
 					 
 							if (tcpServer.proprieta.get(entry.getKey()).getProprietario() == g.getNome())
 							{	
-								out.println("Proprieta posseduta " + entry.getKey());
+								out.println("Proprieta posseduta " + entry.getKey()+ " costo "+ tcpServer.proprieta.get(entry.getKey()).getCosto() + " case "+ tcpServer.proprieta.get(entry.getKey()).getNumeroCase());
 							}
 
 
@@ -144,7 +144,7 @@ public class SingleServerMng extends Thread{
 					 
 							if (tcpServer.proprieta.get(entry.getKey()).getProprietario() != g.getNome())
 							{	
-								out.println("Proprieta NON posseduta " + entry.getKey());
+								out.println("Proprieta NON posseduta " + entry.getKey()+ " costo "+ tcpServer.proprieta.get(entry.getKey()).getCosto());
 							}
 						}
 						out.println("ENDELENCO");
