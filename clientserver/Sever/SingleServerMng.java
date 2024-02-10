@@ -38,13 +38,13 @@ public class SingleServerMng extends Thread{
               System.out.println("Echoing: " + str);
               if(first){
                 g.setNome(str);
-                out.println("benvenuto: "+str + " cosa vuoi fare ");
+                out.println("benvenuto: "+str + " cosa vuoi fare: ");
                 first = false;}
                 else{
                  switch(str){
                     case "via":
                         g.via();
-                        out.println("hai "+g.soldi +" cosa vuoi fare ");
+                        out.println("hai "+g.soldi +" cosa vuoi fare: ");
                       break;
                     case "compra":
 						azione =0;
@@ -52,15 +52,15 @@ public class SingleServerMng extends Thread{
                         String cosa = in.readLine();
                         switch (cosa) {
                           case "proprieta":
-                      out.println("nome proprieta da acquistare ");
+                      out.println("nome proprieta da acquistare: ");
                             azione =1;
                             break;
                           case "casa":
-                      out.println("nome proprieta su cui costruire ");
+                      out.println("nome proprieta su cui costruire: ");
                             azione =2;
                             break;
                           default:
-                      out.println("comando compra non valido");
+                      out.println("comando compra non valido: ");
                             break;
                         }
 						if (azione !=0)
@@ -75,17 +75,17 @@ public class SingleServerMng extends Thread{
 										if(g.soldi > tcpServer.proprieta.get(nomeProprieta).getCosto())
 										{
 											g.soldi = g.soldi - tcpServer.proprieta.get(nomeProprieta).getCosto();
-											out.println("Comprato "+ nomeProprieta +" cosa vuoi fare ");
+											out.println("Comprato "+ nomeProprieta +" cosa vuoi fare: ");
 											tcpServer.proprieta.get(nomeProprieta).setProprietario(g.getNome());
 										}
 										else
 										{
-											out.println("Non hai abbastanza soldi per comprare "+ nomeProprieta +" cosa vuoi fare ");
+											out.println("Non hai abbastanza soldi per comprare "+ nomeProprieta +" cosa vuoi fare: ");
 										}
 									}
 									else
 									{
-										out.println("Posseduta "+ nomeProprieta +" cosa vuoi fare ");
+										out.println("Posseduta "+ nomeProprieta +" cosa vuoi fare: ");
 									}
 								}
 								else
@@ -99,27 +99,27 @@ public class SingleServerMng extends Thread{
 											{
 												g.soldi = g.soldi - tcpServer.proprieta.get(nomeProprieta).getCostoCasa();
 												tcpServer.proprieta.get(nomeProprieta).costruisciCasa();
-												out.println("Costruito "+ quantecasa(nomeProprieta) +" cosa vuoi fare ");
+												out.println("Costruito "+ quantecasa(nomeProprieta) +" cosa vuoi fare: ");
 											}
 											else
 											{
-												out.println("Mancano soldi Costruzioni "+ nomeProprieta +" cosa vuoi fare ");
+												out.println("Mancano soldi Costruzioni "+ nomeProprieta +" cosa vuoi fare: ");
 											}
 										}
 										else
 										{
-											out.println("MAX Costruzioni "+ nomeProprieta +" cosa vuoi fare ");
+											out.println("MAX Costruzioni "+ nomeProprieta +" cosa vuoi fare: ");
 										}
 									}
 									else
 									{
-										out.println("Non posseduta "+ nomeProprieta +" cosa vuoi fare ");
+										out.println("Non posseduta "+ nomeProprieta +" cosa vuoi fare: ");
 									}
 								}
 							}
 							else
 							{
-								out.println("Non ESISTE "+ nomeProprieta +" cosa vuoi fare ");
+								out.println("Non ESISTE "+ nomeProprieta +" cosa vuoi fare: ");
 							}
 						}
                       break;
@@ -157,11 +157,11 @@ public class SingleServerMng extends Thread{
 							}
 						}
 						out.println("ENDELENCO");
-                        out.println("hai "+g.soldi +" cosa vuoi fare ");
+                        out.println("hai "+g.soldi +" cosa vuoi fare: ");
                       
                     break;
                     case "conto":
-                        out.println("hai "+g.soldi +" cosa vuoi fare ");
+                        out.println("hai "+g.soldi +" cosa vuoi fare: ");
                         break;
                     default :
                       out.println("comando non valido");
