@@ -164,7 +164,7 @@ public class SingleServerMng extends Thread{
                         out.println("hai "+g.soldi +" cosa vuoi fare: ");
                         break;
                     default :
-                      out.println("comando non valido");
+                      out.println("comando non valido cosa vuoi fare: ");
                       break; 
                   }   }
 

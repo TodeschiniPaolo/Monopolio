@@ -5,7 +5,7 @@ import java.io.*;
    //Creazione di una classe per il Multrithreading
    class ServerThread extends Thread {
      private Socket socket;
-      private Socket[] array;
+     private Socket[] array;
      public String userInput;
      public ServerThread (Socket socket,Socket[] array) {
   
